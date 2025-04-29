@@ -17,4 +17,4 @@ exports.execute = (query, params = [], pool = connection) => {
             }
         });
     });
-}
+};
