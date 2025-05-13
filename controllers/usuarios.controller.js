@@ -41,7 +41,7 @@ try {
 }
 }
 
-exports.cadastrarUsuario = async (req, res) => {
+exports.cadastro = async (req, res) => {
     try {
         const hash = await bcrypt.hash(req.body.password, 10);
         const resultado = await mysql.execute(
@@ -52,7 +52,7 @@ exports.cadastrarUsuario = async (req, res) => {
                 password,
                 birth_date,
                 phone
-            ) VALUES (?, ?, ?, ?, ?, ?)`,
+            ) VALUES (?, ?, ?, ?, ?, ?);`,
             [
                 req.body.first_name, 
                 req.body.last_name, 
@@ -62,12 +62,9 @@ exports.cadastrarUsuario = async (req, res) => {
                 req.body.phone
             ]
         );
-        return res.status(201).send({
-            "Mensagem": "Usuário cadastrado com sucesso!",
-            "Resultado": resultado
-        });
+        return res.status(201).send({"Mensagem": "Usuário cadastrado com sucesso!"});
     } catch (error) {
-        return res.status(500).send({"Error": error});
+        return res.status(500).send(error);
     }
 }
 
@@ -87,7 +84,7 @@ if (!match) {
 }
 const token = jwt.sign(
     {
-        id: usuario[0].id,
+        id: usuario[0].id,yyyyy,
         first_name: usuario[0].first_name,
         last_name: usuario[0].last_name,
         email: usuario[0].email,
@@ -100,6 +97,6 @@ return res.status(200).send({
 });
 
 } catch (error) {
-    return res.status(500).send({"Error": error});
+    return res.status(500).send(error);
 }
 }

@@ -3,6 +3,6 @@ const app = require('./index'); // Importa o app do index.js (ajuste o caminho s
 
 const server = http.createServer(app); // Cria o servidor usando o app
 
-server.listen(3001, () => {
+server.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');
 });

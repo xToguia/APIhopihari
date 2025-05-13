@@ -14,6 +14,6 @@ exports.required = (req, res, next) => {
             return res.status(401).send({ mensagem: 'Falha na autenticação' });
         }
     } catch (error) {
-        return res.status(500).send({"error": error });
+        return res.status(500).send(error);
     }
 }

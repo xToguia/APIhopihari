@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`users` (
   `password` VARCHAR(255) NOT NULL,
   `birth_date` DATE NOT NULL,
   `phone` VARCHAR(20) NULL DEFAULT NULL,
-  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -82,20 +82,20 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `hopi_hari_db`.`users_has_atracoes`
+-- Table `hopi_hari_db`.`line`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`users_has_atracoes` (
+CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`line` (
   `users_id` INT NOT NULL,
   `atracoes_id` INT NOT NULL,
   `created_at` TIMESTAMP GENERATED ALWAYS AS () VIRTUAL,
   `updated_at` TIMESTAMP GENERATED ALWAYS AS (),
   PRIMARY KEY (`users_id`, `atracoes_id`),
-  INDEX `fk_users_has_atracoes_atracoes1_idx` (`atracoes_id` ASC) VISIBLE,
-  INDEX `fk_users_has_atracoes_users_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_has_atracoes_atracoes1`
+  INDEX `fk_line_atracoes1_idx` (`atracoes_id` ASC) VISIBLE,
+  INDEX `fk_line_users_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_line_atracoes1`
     FOREIGN KEY (`atracoes_id`)
     REFERENCES `hopi_hari_db`.`atracoes` (`id`),
-  CONSTRAINT `fk_users_has_atracoes_users`
+  CONSTRAINT `fk_line_users`
     FOREIGN KEY (`users_id`)
     REFERENCES `hopi_hari_db`.`users` (`id`))
 ENGINE = InnoDB
