@@ -59,21 +59,21 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `hopi_hari_db`.`notificacoes`
+-- Table `hopi_hari_db`.`notifications`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`notificacoes` (
+CREATE TABLE IF NOT EXISTS `hopi_hari_db`.`notifications` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(200) NOT NULL,
   `status` TINYINT NOT NULL,
   `users_id` INT NOT NULL,
   `atracoes_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_notificacoes_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_notificacoes_atracoes1_idx` (`atracoes_id` ASC) VISIBLE,
-  CONSTRAINT `fk_notificacoes_atracoes1`
+  INDEX `fk_notifications_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_notifications_atracoes1_idx` (`atracoes_id` ASC) VISIBLE,
+  CONSTRAINT `fk_notifications_atracoes1`
     FOREIGN KEY (`atracoes_id`)
     REFERENCES `hopi_hari_db`.`atracoes` (`id`),
-  CONSTRAINT `fk_notificacoes_users1`
+  CONSTRAINT `fk_notifications_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `hopi_hari_db`.`users` (`id`))
 ENGINE = InnoDB
