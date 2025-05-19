@@ -16,3 +16,5 @@ as tempo_espera_total;
 desc notifications;
 insert into notifications (description ,users_id, atracoes_id, tempo_espera, status)
 values (concat(tempo_espera_total,"MINUTOS DE ESPERA PARA O BRINQUEDO"), 8, 5, TRUE);
+
+select * from notifications;

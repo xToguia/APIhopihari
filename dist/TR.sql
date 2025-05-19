@@ -1,5 +1,6 @@
 delimiter $$
 
+drop trigger if exists after_insert_line;
 create trigger after_insert_line
 after insert on hopi_hari_db.line
 for each row
@@ -11,9 +12,9 @@ declare total_wait int;
 
 select tempo_espera into wait_time
 from atracoes 
-where atracoes_id = new.atracoes_id;
+where id = new.atracoes_id;
 
-select count(id) into line_count
+select count(users_id) into line_count
 from hopi_hari_db.line 
 where atracoes_id = new.atracoes_id;
 
@@ -24,4 +25,4 @@ values (concat(total_wait, " MINUTOS DE ESPERA PARA O BRINQUEDO"), new.users_id,
 
 end$$
 
-delimiter ;
+delimiter ; 
