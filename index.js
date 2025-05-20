@@ -23,7 +23,6 @@ app.use((req, res, next) => {
     );
     if (req.method === 'OPTIONS') {
         res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
-        return res.status(200).end(); // Finaliza a resposta para requisições OPTIONS
 
     }
     next();
@@ -31,12 +30,8 @@ app.use((req, res, next) => {
 
 app.use("/usuarios", usuariosRoute);
 app.use("/filas", filasRoute);
-app.use('/api', notificationRoutes);
+app.use('/notification', notificationRoute);
+app.use("/brinquedos", brinquedosRoute);
 
-const PORT = 3000;
-
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
 
 module.exports = app;

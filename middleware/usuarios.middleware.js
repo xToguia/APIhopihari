@@ -17,3 +17,13 @@ exports.required = (req, res, next) => {
         return res.status(500).send(error);
     }
 }
+
+exports.userRequired = (req, res, next) => {
+    try {
+        if (!res.locals.admin) { 
+        return res.status(405).send({"Mensagem'": 'usuário não Autorizado' });
+     }
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+}
